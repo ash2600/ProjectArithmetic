@@ -161,14 +161,17 @@ public class MainActivity extends AppCompatActivity {
 
     public String getInterpretation(int [][]dataFrame,double slope){
        //provide interpretation based on your slope analysis
+        String interpretation = "Default Interpretation";
         if (slope > 0 && slope <= 0.5)
-        {
-            double myslope= LR.getSlope(dataFrame);
-            if(myslope>0 && myslope<0.5)
-                return "You are slow Learner";
-            else if(myslope>=0.5 )
-                return "You are performing Excellent";
-            else
-                return "you are default";
+           interpretation="You are slow learner";
+        else if (slope > 0.5)
+            interpretation="you are good learner";
+        else if (slope < 0)
+            interpretation = "You are not learner";
+        else if (dataFrame[0][1]==3 && slope==0)
+            interpretation="You achieve perfection";
+        else if (dataFrame[0][1]==0 && slope==0)
+            interpretation="You do no learn";
+        return interpretation;
     }
 }
